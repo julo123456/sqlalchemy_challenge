@@ -34,5 +34,30 @@ app = Flask(__name__)
 
 
 #################################################
-# Flask Routes_Dynamic
+# Flask Routes - API Dynamic Route 
 #################################################
+
+@app.route("/")  """List all available api routes."""
+def welcome():
+    return(
+        f"Welcome to Hawaii Weather API"
+        f"/api/v1.0/<start>"
+        f"/api/v1.0/<start><end>"
+    )
+
+@app.route(/api/v1.0/<start>)
+def start(start):
+    canonicalized = start.replace("")
+    for date in stat_summary:
+        search_date = date['start'].replace("")
+        if search date == canonicalized:
+            return jsonify(sta_summary)
+    return jasonify ({"error":f"start date {start} not fount"}), 404
+
+@app.route(/api/v1.0/<star><end>)
+def start_end():
+    canonicalized = start_end.replace("","")
+    for date, date in temperature:
+        start_date = date['start']
+
+
