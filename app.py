@@ -12,19 +12,19 @@ from flask import Flask, jsonify
 #################################################
 # Database Setup
 #################################################
-engin = create_engine("sqlite:///hawaii.sqlite")
+engine = create_engine("sqlite:///hawaii.sqlite")
 
 # reflect an existing database into a new model
 Base = automap_base()
 # reflect the tables
-Base.prepare(autoload_with=engin)
+Base.prepare(autoload_with=engine)
 
 # Save references to each table
 measurement = Base.classes.measurement
 station = Base.classes.station
 
 # Create our session (link) from Python to the DB
-session = Session(engin)
+session = Session(engine)
 
 #################################################
 # Flask Setup
@@ -52,7 +52,7 @@ def welcome():
 @app.route("/api/v1.0/precipitation")
 def precipitation():  
     # Create session (link) from Python to the DB
-    session = Session(engin)
+    session = Session(engine)
 
     # Query restuls from precipitation analysis
     results = session.query(measurement.date, measurement.prcp).filter(measurement.date <= '2017-08-23').filter(measurement.date >= query_date).all()
@@ -74,7 +74,7 @@ def precipitation():
 @app.route("/api/v1.0/stations")
 def stations():
     # Create session (link) from Python to the DB
-    session = Session(engin)
+    session = Session(engine)
 
     # Query results from stations analysis to list all stations
     results = session.query(measurement.station).distinct().all()
@@ -89,7 +89,7 @@ def stations():
 @app.route("api/v1.0/tobs")
 def tobs():
     # Create session (link) from Python to the DB
-    session = Session(engin)
+    session = Session(engine)
 
     # Query results for the most active station
     results = sta_summary
@@ -100,7 +100,7 @@ def tobs():
 
 def tobs():
     # Create session (link) from Python to the DB
-    session = Session(engin)
+    session = Session(engine)
 
     # Query restuls last year of temperature data from the most active station
     results = temperature
