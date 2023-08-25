@@ -53,7 +53,8 @@ def start(start):
                func.min(measurement.tobs),
                func.avg(measurement.tobs)]
     sta_summary = session.query(*sel_station).filter(measurement.date >= start).all()
-    
+
+    session.close()
     return jsonify ([sta_summary])
 
 @app.route("/api/v1.0/<start><end>")
@@ -63,7 +64,8 @@ def start_end(start,end):
             func.min(measurement.tobs),
             func.avg(measurement.tobs)]
     sta_summary = session.query(*sel_station).filter(measurement.date >= start).filter(measurement.date <= end).all()
-    
+
+    session.close()
     return jsonify ([sta_summary])
 
 
