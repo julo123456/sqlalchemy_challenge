@@ -36,7 +36,7 @@ app = Flask(__name__)
 #################################################
 # Flask Routes - API Static Route
 #################################################
-@app.route("/")  """List all available api routes."""
+@app.route("/")  
 def welcome():
     return(
         f"Welcome to the Hawaii Weather API"
